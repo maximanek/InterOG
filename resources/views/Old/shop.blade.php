@@ -4,7 +4,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1 style="text-align: center">Sklep</h1>
+                <h1 style="text-align: center">
+                    <a href="/" class="btn btn-primary mb-5 float-left">Wróć</a>
+                    Sklep
+                </h1>
             </div>
             <div class="col-md-8">
                 <form method="POST" action="{{route('shop.upload')}}" enctype="multipart/form-data">

@@ -19,9 +19,13 @@ class CsvController extends Controller
         return view('old.allegro');
     }
 
-    public function AllegroUpload(Request $request){
+    public function AllegroDropTable(){
         DB::table('orders')->truncate();
         DB::table('products')->truncate();
+        return view('old.allegro');
+    }
+
+    public function AllegroUpload(Request $request){
         $file = fopen($request->AllegroFileInput, 'r+');
         $array_with_order = [];
         $array_with_product = [];

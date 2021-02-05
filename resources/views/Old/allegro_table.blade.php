@@ -6,6 +6,12 @@
             <h1>
                 Raport roślin ze sklepu
             </h1>
+            <a href="/old/allegro" class="btn btn-primary mb-5">Dodaj kolejną liste</a>
+            <form action="{{route('allegro.truncate')}}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary ">Wyczyść baze danych</button>
+            </form>
+
         </div>
         <table class="table table-hover">
             <h1 class="text-center pt-5">
