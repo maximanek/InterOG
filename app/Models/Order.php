@@ -10,8 +10,6 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable= [
-        'id',
-        'Type',
         'OrderId',
         'SellerId',
         'SellerLogin',
@@ -61,4 +59,10 @@ class Order extends Model
         'SellerNotes',
         'BuyerNotes',
     ];
+
+    public function products()
+    {
+       return $this->hasMany(Product::class, 'OrderId', 'OrderId');
+    }
+
 }

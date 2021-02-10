@@ -204,7 +204,9 @@
             @endforeach
             </tbody>
         </table>
-
+        <div>
+            <a href="{{route('allegro.print')}}"  class="btn btn-primary">Drukuj listy</a>
+        </div>
     </div>
 
 

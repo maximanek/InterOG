@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CsvController;
+use App\Http\Controllers\PrintController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::post('/old/shop', [App\Http\Controllers\CsvController::class, 'shopUpload
 Route::get('/old/shop_table', [App\Http\Controllers\CsvController::class, 'shopGetData'])->name('shop.download')->middleware('auth');
 
 
+Route::get('/old/print', [App\Http\Controllers\PrintController::class, 'printAllegroTables'])->name('allegro.print')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

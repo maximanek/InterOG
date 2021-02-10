@@ -9,8 +9,6 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'Type',
         'OrderId',
         'LineItemId',
         'OfferId',
@@ -20,4 +18,11 @@ class Product extends Model
         'Price',
         'Currency'
     ];
+
+    public function order(){
+       return $this->belongsTo(Order::class);
+    }
+
+
+
 }

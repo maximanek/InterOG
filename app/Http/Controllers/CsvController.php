@@ -31,13 +31,13 @@ class CsvController extends Controller
         $array_with_product = [];
         while(!feof($file))
         {
-                $line= fgets($file);
-                $find = strstr($line, 'order');
-                if($find!="")
-                    array_push($array_with_order, $find);
-                $find = strstr($line, 'lineItem');
-                if($find!="")
-                    array_push($array_with_product, $find);
+            $line= fgets($file);
+            $find = strstr($line, 'order');
+            if($find!="")
+                array_push($array_with_order, $find);
+            $find = strstr($line, 'lineItem');
+            if($find!="")
+                array_push($array_with_product, $find);
         }
         fclose($file);
         $table_with_orders =[];
@@ -72,22 +72,20 @@ class CsvController extends Controller
         foreach($table_with_products as $row)
         {
             Product::create([
-            'Type'=> $row[0],
-            'OrderId'=> $row[1],
-            'LineItemId'=> $row[2],
-            'OfferId'=> $row[3],
-            'OfferExternalId'=> $row[4],
-            'Name'=> $row[5],
-            'Quantity'=> $row[6],
-            'Price'=> $row[7],
-            'Currency'=> $row[8]
+                'OrderId'=> $row[1],
+                'LineItemId'=> $row[2],
+                'OfferId'=> $row[3],
+                'OfferExternalId'=> $row[4],
+                'Name'=> $row[5],
+                'Quantity'=> $row[6],
+                'Price'=> $row[7],
+                'Currency'=> $row[8]
             ]);
         }
         foreach($table_with_orders as $row)
         {
 
             Order::create([
-                'Type'=> $row[0],
                 'OrderId'=> $row[1],
                 'SellerId'=> $row[2],
                 'SellerLogin'=> $row[3],
@@ -136,7 +134,7 @@ class CsvController extends Controller
                 'TotalPaidCurrency'=> $row[46],
                 'SellerNotes'=> $row[47],
                 'BuyerNotes'=> $row[48],
-                ]);
+            ]);
         }
 
         return redirect()->route('allegro.download');
@@ -146,8 +144,7 @@ class CsvController extends Controller
         $allegroProductforMarcin = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"1 %')
+            ->where('OfferExternalId','like','["]1[]%')
             ->get();
         foreach ($allegroProductforMarcin as $string)
         {
@@ -158,8 +155,7 @@ class CsvController extends Controller
         $allegroProductforWiesiek = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"2%')
+            ->where('OfferExternalId','like','["]2%')
             ->get();
         foreach ($allegroProductforWiesiek as $string)
         {
@@ -170,8 +166,7 @@ class CsvController extends Controller
         $allegroProductforMichal = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"3%')
+            ->where('OfferExternalId','like','["]3%')
             ->get();
         foreach ($allegroProductforMichal as $string)
         {
@@ -181,8 +176,7 @@ class CsvController extends Controller
         $allegroProductforPaniTomaka = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"4%')
+            ->where('OfferExternalId','like','["]4%')
             ->get();
         foreach ($allegroProductforPaniTomaka as $string)
         {
@@ -192,8 +186,7 @@ class CsvController extends Controller
         $allegroProductforPaszczyna = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"5%')
+            ->where('OfferExternalId','like','["]5%')
             ->get();
         foreach ($allegroProductforPaszczyna as $string)
         {
@@ -203,8 +196,7 @@ class CsvController extends Controller
         $allegroProductforZbigniew = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"6%')
+            ->where('OfferExternalId','like','["]6%')
             ->get();
         foreach ($allegroProductforZbigniew as $string)
         {
@@ -215,8 +207,7 @@ class CsvController extends Controller
         $allegroProductforAndrzej = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"7%')
+            ->where('OfferExternalId','like','["]7%')
             ->get();
         foreach ($allegroProductforAndrzej as $string)
         {
@@ -227,8 +218,7 @@ class CsvController extends Controller
         $allegroProductforElgarden = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"8%')
+            ->where('OfferExternalId','like','["]8%')
             ->get();
         foreach ($allegroProductforElgarden as $string)
         {
@@ -239,8 +229,7 @@ class CsvController extends Controller
         $allegroProductforMirochna = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"9%')
+            ->where('OfferExternalId','like','["]9%')
             ->get();
         foreach ($allegroProductforMirochna as $string)
         {
@@ -251,8 +240,7 @@ class CsvController extends Controller
         $allegroProductforTyper = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->havingRaw('SUM(Quantity)')
-            ->where('OfferExternalId','like','"10%')
+            ->where('OfferExternalId','like','["]10%')
             ->get();
         foreach ($allegroProductforTyper as $string)
         {
@@ -316,7 +304,7 @@ class CsvController extends Controller
 
         foreach($tabela as $row) //
         {
-           for($i=1 ; $i < $size_3 ;$i+=2)
+            for($i=1 ; $i < $size_3 ;$i+=2)
             {
                 if($row[$i]=="")
                     break;
@@ -331,14 +319,13 @@ class CsvController extends Controller
         $data =[
             'shop_data' => $Shopdate,
         ];
-       return redirect()->route('shop.download', $data);
+        return redirect()->route('shop.download', $data);
     }
 
     public function shopGetData(Request $request) {
         $shopProduct = DB::table('shop_products')
             ->select('product_name', DB::raw('SUM(quantity) as quantity'))
             ->groupby('product_name')
-            ->havingRaw('SUM(quantity)')
             ->where('date','<',$request->shop_data)
             ->get();
         $data =[
