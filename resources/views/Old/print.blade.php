@@ -45,20 +45,20 @@
 
                 </tr>
                 <tr>
-                    <th>Numer zamówienia: {{$order->OrderId}}</th>
+                    <th></th>
                     <th colspan="3">Data zamówienia: {{$order->OrderDate}}</th>
                 </tr>
                 <tr>
                     <th>Nazwa przedmiotu</th>
-                    <th>Sygnatura</th>
                     <th>Sztuk</th>
+                    <th>Sygnatura</th>
                     <th>Cena</th>
                 </tr>
                 @foreach($order->products as $product)
                     <tr>
                         <td>{{$product->Name}}</td>
-                        <td>{{$product->OfferExternalId}}</td>
                         <td>{{$product->Quantity}}</td>
+                        <td>{{$product->OfferExternalId}}</td>
                         <td>{{$product->Price}} {{$product->Currency}}</td>
                     </tr>
                 @endforeach
