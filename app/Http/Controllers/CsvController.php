@@ -144,7 +144,7 @@ class CsvController extends Controller
         $allegroProductforMarcin = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]1[]%')
+            ->where('OfferExternalId','like','"1 %')
             ->get();
         foreach ($allegroProductforMarcin as $string)
         {
@@ -155,7 +155,7 @@ class CsvController extends Controller
         $allegroProductforWiesiek = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]2%')
+            ->where('OfferExternalId','like','"2%')
             ->get();
         foreach ($allegroProductforWiesiek as $string)
         {
@@ -166,7 +166,7 @@ class CsvController extends Controller
         $allegroProductforMichal = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]3%')
+            ->where('OfferExternalId','like','"3%')
             ->get();
         foreach ($allegroProductforMichal as $string)
         {
@@ -176,7 +176,7 @@ class CsvController extends Controller
         $allegroProductforPaniTomaka = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]4%')
+            ->where('OfferExternalId','like','"4%')
             ->get();
         foreach ($allegroProductforPaniTomaka as $string)
         {
@@ -186,7 +186,7 @@ class CsvController extends Controller
         $allegroProductforPaszczyna = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]5%')
+            ->where('OfferExternalId','like','"5%')
             ->get();
         foreach ($allegroProductforPaszczyna as $string)
         {
@@ -196,7 +196,7 @@ class CsvController extends Controller
         $allegroProductforZbigniew = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]6%')
+            ->where('OfferExternalId','like','"6%')
             ->get();
         foreach ($allegroProductforZbigniew as $string)
         {
@@ -207,7 +207,7 @@ class CsvController extends Controller
         $allegroProductforAndrzej = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]7%')
+            ->where('OfferExternalId','like','"7%')
             ->get();
         foreach ($allegroProductforAndrzej as $string)
         {
@@ -218,7 +218,7 @@ class CsvController extends Controller
         $allegroProductforElgarden = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]8%')
+            ->where('OfferExternalId','like','"8%')
             ->get();
         foreach ($allegroProductforElgarden as $string)
         {
@@ -229,7 +229,7 @@ class CsvController extends Controller
         $allegroProductforMirochna = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]9%')
+            ->where('OfferExternalId','like','"9%')
             ->get();
         foreach ($allegroProductforMirochna as $string)
         {
@@ -240,7 +240,7 @@ class CsvController extends Controller
         $allegroProductforTyper = DB::table('products')
             ->select('OfferExternalId', DB::raw('SUM(Quantity) as Quantity'))
             ->groupby('OfferExternalId')
-            ->where('OfferExternalId','like','["]10%')
+            ->where('OfferExternalId','like','"10%')
             ->get();
         foreach ($allegroProductforTyper as $string)
         {
