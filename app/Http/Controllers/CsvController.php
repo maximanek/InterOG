@@ -267,16 +267,13 @@ class CsvController extends Controller
 
     }
 
-    public function indexShop(){
-        return view('old.shop');
-    }
 
     public function shopUpload(Request $request)
     {
         DB::table('shop_products')->truncate();
-        $Shopdate=$request->ShopDate;
         $file = fopen($request->ShopFileInput,"r+" );
         $tablica=[];
+
         while(!feof($file))
         {
             $linia = fgets($file);
@@ -285,7 +282,6 @@ class CsvController extends Controller
         unset($tablica[0]);
         fclose($file); // zamykanie pliku
 
-        $wiersz = [];
         $tabela= [];
 
         foreach ($tablica as $string)
@@ -316,17 +312,14 @@ class CsvController extends Controller
                 ]);
             }
         }
-        $data =[
-            'shop_data' => $Shopdate,
-        ];
-        return redirect()->route('shop.download', $data);
+
+        return redirect()->route('shop.download');
     }
 
-    public function shopGetData(Request $request) {
+    public function shopGetData() {
         $shopProduct = DB::table('shop_products')
             ->select('product_name', DB::raw('SUM(quantity) as quantity'))
             ->groupby('product_name')
-            ->where('date','<',$request->shop_data)
             ->get();
         $data =[
             'shop_products' => $shopProduct,
