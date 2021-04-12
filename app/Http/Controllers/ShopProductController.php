@@ -2,109 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ShopProductRepository;
 use Illuminate\Http\Request;
 use Exception;
-use App\Services\ShopProductService;
-use App\Models\ShopProduct;
-use Illuminate\Http\Response;
+use App\Services\CsvService;
 use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
-
 
 class ShopProductController extends Controller
 {
     /**
-     * @var ShopProductService
+     * @var CsvService
      */
-    private $shopProductService;
+    private $csvService;
 
     /**
      * ShopProductController constructor
      *
-     * @param ShopProductService $shopProductService
+     * @param CsvService $csvService
      */
-    public function __construct(ShopProductService $shopProductService)
+    public function __construct(CsvService $csvService)
     {
-        $this->shopProductService = $shopProductService;
+        $this->csvService = $csvService;
     }
-
-
-
 
     public function index()
     {
         return view('old.shop');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
-        $data = fopen($request->ShopFileInput,"r+" );
+       $data = fopen($request->ShopFileInput,"r+" );
        $result = ['status' => 200];
        try {
-           $result['data'] = $this->shopProductService->saveShopProductData($data);
+           $result['data'] = $this->csvService->saveShopProductData($data);
        } catch (Exception $e) {
            $result = [
                'status' => 500,
                'error' => $e->getMessage()
            ];
        }
-       return response()->json($result, $result['status']);
+        return redirect()->route('shop.download');
    }
 
-   /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return Response
-    */
-    public function show($id)
+    public function shopGetData()
     {
-        //
+        $data = $this->csvService->getShopData();
+        return view('old.shop_table', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

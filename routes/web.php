@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CsvController;
+use App\Http\Controllers\AllegroCsvController;
 use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\HomeController;
@@ -26,10 +26,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name( 'home');
 
 
-    Route::get('/old/allegro', [CsvController::class, 'indexAllegro'])->name('allegro.index');
-    Route::post('/old/allegro', [CsvController::class, 'AllegroUpload'])->name('allegro.upload');
-    Route::get('/old/allegro/allegro_table', [CsvController::class, 'AllegroGetData'])->name('allegro.download');
-    Route::post('/old/allegro/allegro_table', [CsvController::class, 'AllegroDropTable'])->name('allegro.truncate');
+    Route::get('/old/allegro', [AllegroCsvController::class, 'indexAllegro'])->name('allegro.index');
+    Route::post('/old/allegro', [AllegroCsvController::class, 'AllegroUpload'])->name('allegro.upload');
+    Route::get('/old/allegro/allegro_table', [AllegroCsvController::class, 'AllegroGetData'])->name('allegro.download');
+    Route::post('/old/allegro/allegro_table', [AllegroCsvController::class, 'AllegroDropTable'])->name('allegro.truncate');
 
 
     Route::get('/old/shop', [ShopProductController::class, 'index'])->name('shop.index');
