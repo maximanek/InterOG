@@ -63,8 +63,8 @@ class CsvService
 
     public function saveAllegro($data)
     {
-        $array_with_order = [];
-        $array_with_product = [];
+        $arrayWithOrder = [];
+        $arrayWithProduct = [];
         while(!feof($data))
         {
             $line= fgets($data);
@@ -72,9 +72,9 @@ class CsvService
             if($find!="")
             {
                 $test = "";
-                $char_array=str_split($line);
+                $charArray=str_split($line);
                 $flag=false;
-                foreach ($char_array as $char)
+                foreach ($charArray as $char)
                 {
                     if($char=='"'){
                         $flag = !$flag;
@@ -83,27 +83,38 @@ class CsvService
                         $test = $test.$char;
                     }
                 }
-                array_push($array_with_order, explode(",", $test));
+                array_push($arrayWithOrder, explode(",", $test));
             }
             $find = strstr($line, 'lineItem');
             if($find!="")
             {
-                $find = explode("," , $find);
-                array_push($array_with_product, $find);
+                $test = "";
+                $charArray=str_split($line);
+                $flag=false;
+                foreach ($charArray as $char)
+                {
+                    if($char=='"'){
+                        $flag = !$flag;
+                    }
+                    if(!($flag==true && $char==",")){
+                        $test = $test.$char;
+                    }
+                }
+                array_push($arrayWithProduct, explode("," , $test));
             }
         }
         fclose($data);
-        foreach($array_with_product as $row)
+        foreach($arrayWithProduct as $row)
         {
-            $result_one = $this->csvRepository->saveAllegroProduct($row);
+            $result1 = $this->csvRepository->saveAllegroProduct($row);
         }
-        foreach($array_with_order as $row)
+        foreach($arrayWithOrder as $row)
         {
-            $result_2 = $this->csvRepository->saveAllegroOrder($row);
+            $result2 = $this->csvRepository->saveAllegroOrder($row);
         }
         return [
-            'result_one' => $result_one,
-            'result_2' => $result_2
+            'result_one' => $result1,
+            'result_2' => $result2
         ];
     }
 
