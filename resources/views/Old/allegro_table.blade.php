@@ -4,7 +4,7 @@
     <div class="container">
         <div class="text-center">
             <h1>
-                Raport roślin ze sklepu
+                Raport roślin ze sklepu Allegro
             </h1>
             <a href="/old/allegro" class="btn btn-primary mb-5">Dodaj kolejną liste</a>
             <form action="{{route('allegro.truncate')}}" method="POST">
